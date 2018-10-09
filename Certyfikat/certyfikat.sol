@@ -1,6 +1,17 @@
 pragma solidity ^0.4.25;
 
 
+contract CertyficateCreator{
+    //dynamic array with addresses of deployed auctions
+    address[] public certificates; 
+    
+    function createCertificate(uint _quantityOfCertificate) public{
+        address newCertificate = new Certyficate(msg.sender, _quantityOfCertificate);
+        certificates.push(newCertificate);
+    }
+}
+
+
 // ----------------------------------------------------------------------------
 // ERC Token Standard #20 Interface
 // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
@@ -20,13 +31,8 @@ contract ERC20Interface {
 }
 
 contract Certyficate is ERC20Interface{
-    // string public name = "Cryptos";
-    // string public symbol = "CRPT";
-    // uint public decimals = 0;
-    
+    address public owner;
     uint public quantity;
-    address public issuer;
-    
     mapping(address => uint) public balances;
     
     struct CertyficateDetails {
@@ -39,14 +45,14 @@ contract Certyficate is ERC20Interface{
     event Transfer(address indexed _from, address indexed _to, uint _quantity);
 
 
-    constructor(uint _quantity) public{
+    constructor(address _owner, uint _quantity) public{
         quantity = _quantity;
-        issuer = msg.sender;
-        balances[issuer] = quantity;
+        owner = _owner;
+        balances[owner] = quantity;
     }
     
     modifier onlyOwner(){
-        require(msg.sender == issuer);
+        require(msg.sender == owner);
         _;
     } 
 
