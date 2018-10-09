@@ -1,0 +1,128 @@
+I. SmartContracts 
+
+I.1. SC design
+    
+I.2. SC program/compile/deploy/testing - Remix
+
+    remix.ethereum.org
+
+II. Test env setup
+
+II.1. Test ethereum
+
+$ npm install -g ethereumjs-testrpc
+$ testrpc
+
+II.2. Truffle
+$ npm install -g truffle
+
+II.3 Truffle project setup 
+
+$ mkdir solidity-experiments
+$ cd solidity-experiments/
+$ truffle init 
+
+II.4 Truffle network - truffle.js
+
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*" // Match any network id
+    }
+  }
+
+II.5 Contract create
+
+truffle create contract xxxContract
+
+II.6 Contract deploy file
+
+2_deploy_contracts.js
+
+var xxxContract = artifacts.require("./xxxContract.sol");
+
+module.exports = function(deployer) {
+  deployer.deploy(xxxContract);
+};
+
+II.7 Truffle compile/migrate
+
+truffle compile
+truffle migrate 
+//truffle migrate --reset
+
+II.8 Truffle console
+
+truffle console
+
+II'. Setting dev - drizzle & react
+
+npm i -g truffle
+
+npm i -g ganache-cli
+
+npm i -g create-react-app
+
+mkdir drizzle-react-tutorial
+cd drizzle-react-tutorial
+
+truffle init
+
+// run test network - mine every 3 sec
+
+ganache-cli -b 3
+
+// write contract 
+
+truffle compile
+
+// network setup truffle.js
+
+module.exports = {
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    }
+  }
+};
+
+// migrations 2_deploy_contracts.js
+const MyStringStore = artifacts.require("MyStringStore");
+
+module.exports = function(deployer) {
+  deployer.deploy(MyStringStore);
+};
+
+truffle migrate
+
+// write tests
+
+truffle test
+
+// bootstrap react project
+
+create-react-app client
+
+// create symlink - act as file/folder is there
+
+# For MacOS and Linux
+
+cd src
+ln -s ../../build/contracts contracts
+
+# For Windows 7, 8 and 10
+# Using a Command Prompt as Admin
+
+cd src
+mklink \D contracts ..\..\build\contracts
+
+// drizzle
+
+npm i drizzle
+
+
+III. DApp build
+
