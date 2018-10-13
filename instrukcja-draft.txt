@@ -64,7 +64,18 @@ npm i -g ganache-cli
 
 npm i -g create-react-app
 
+// VSC git setup
+
+# new repo
+github.com - new repo
+
+# clone
+Ctr+Shift+P
+git:Clone
+
+// only if not cloned from git 
 mkdir drizzle-react-tutorial
+
 cd drizzle-react-tutorial
 
 truffle init
@@ -125,4 +136,25 @@ npm i drizzle
 
 
 III. DApp build
+
+
+
+IX. Git 
+
+#config
+git config --global user.name "rwoj"
+git config --global user.email "rwoj@poczta.onet.pl"
+
+#repo
+git init .  // current repo
+// git status
+git add .   // all files
+git commit -m "jakas wiadomosc"
+// git log
+git remote add origin https://github.com/rwoj/projekt.git
+git push -u origin master
+// may be files
+git pull origin master --allow-unrelated-histories
+git merge origin origin/master
+git push -u origin master
 
